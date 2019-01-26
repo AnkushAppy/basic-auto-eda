@@ -1,6 +1,7 @@
 import os
 import sys
 import random
+from code.settings import REPORT_PATH
 
 class CreateReport:
 
@@ -14,10 +15,10 @@ class CreateReport:
         else:
             raise ("File name not given")
 
-        self.folder_name = file_name[:-3]
+        self.folder_name = REPORT_PATH + file_name[:-3]
 
-
-        self.file_path = "/".join([folder_name, file_name])
+        self.file_path = "/".join([self.folder_name, self.file_name])
+        self.create_report_folder()
         self.fp = open(self.file_path, 'w+')
 
     def create_report_folder(self):
@@ -33,7 +34,7 @@ class CreateReport:
     def get_image_path(self, graph_type, col):
         col = "".join(col.lower().split(' '))
         image_name = "{0}_{1}.png".format(graph_type, col)
-        image_path = self.folder_name + image_name
+        image_path = self.folder_name + '/' + image_name
         return image_path, image_name
 
     def get_report_file(self):

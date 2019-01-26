@@ -5,13 +5,7 @@ import matplotlib.pyplot as plt
 sns.set()
 from code.reporter import CreateReport
 from code.builder import ReportBuilder
-from code.settings import DATA_PATH, DEAULT_CHART_SIZE
-
-data_path = DATA_PATH + "adult.csv"
-report_file_name = "report.md"  # type: str
-
-
-
+from code.settings import DATA_PATH, DEAULT_CHART_SIZE, FILE_NAME, REPORT_FILE_NAME
 
 
 def add_heading_to_report(text='', size=2, tab_after_text=1):
@@ -127,13 +121,9 @@ def add_basic_target_vs_categorical(cr, rb, target_column, remove_cols=None):
         cr.add_plot(file_name=image_name, text=image_path)
         plt.clf()
 
-# if __name__ == "__main__":
-#     cr = CreateReport(report_file_name)
-#     rb = ReportBuilder(file_path=data_path)
-#
-#     add_basic_categorical_details(cr, rb)
-#
-#     cr.close()
+
+data_path = DATA_PATH + FILE_NAME
+report_file_name = REPORT_FILE_NAME  # type: str
 
 
 cr = CreateReport(report_file_name)
