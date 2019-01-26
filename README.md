@@ -28,6 +28,7 @@ Make necessary changes in settings.py file like :
     
 * FILE_NAME: dataset name which you added in data folder
 * REPORT_FILE_NAME: name of report you want
+* TARGET_COLUMN: target column in dataset
   
 If done, run summerieser file  
 ```python

@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 sns.set()
 from code.reporter import CreateReport
 from code.builder import ReportBuilder
-from code.settings import DATA_PATH, DEAULT_CHART_SIZE, FILE_NAME, REPORT_FILE_NAME
+from code.settings import DATA_PATH, DEAULT_CHART_SIZE, FILE_NAME, \
+    REPORT_FILE_NAME, TARGET_COLUMN
 
 
 def add_heading_to_report(text='', size=2, tab_after_text=1):
@@ -139,7 +140,7 @@ add_basic_categorical_details(cr, rb, remove_this=remove_from_categorical)
 
 add_basic_numerical_details(cr, rb)
 
-target_column: str = 'target' # str : name of the target column in dataset
+target_column: str = TARGET_COLUMN # str : name of the target column in dataset
 
 add_basic_target_vs_numerical(cr, rb, target_column)
 add_basic_target_vs_categorical(cr, rb, target_column, remove_cols=remove_from_categorical)

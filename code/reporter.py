@@ -16,9 +16,8 @@ class CreateReport:
             raise ("File name not given")
 
         self.folder_name = REPORT_PATH + file_name[:-3]
-
-        self.file_path = "/".join([self.folder_name, self.file_name])
         self.create_report_folder()
+        self.file_path = "/".join([self.folder_name, self.file_name])
         self.fp = open(self.file_path, 'w+')
 
     def create_report_folder(self):
