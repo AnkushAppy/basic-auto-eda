@@ -1,5 +1,5 @@
 venv
-report_*
+report*
 .idea
 code/__pycache__/
 # Byte-compiled / optimized / DLL files
@@ -106,4 +106,3 @@ venv.bak/
 
 # mypy
 .mypy_cache/
->>>>>>> 6e4299e21db57d77b78fbe5ad53fba5a7c16a7ad

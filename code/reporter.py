@@ -1,10 +1,11 @@
 import os
 import sys
-
+import random
 
 class CreateReport:
 
     def __init__(self, file_name=None):
+        self.file_name = file_name
         if file_name is not None:
             if file_name[-3:] == ".md":
                 pass
@@ -12,7 +13,28 @@ class CreateReport:
                 file_name = file_name + ".md"
         else:
             raise ("File name not given")
-        self.fp = open(file_name, 'w+')
+
+        self.folder_name = file_name[:-3]
+
+
+        self.file_path = "/".join([folder_name, file_name])
+        self.fp = open(self.file_path, 'w+')
+
+    def create_report_folder(self):
+        if not os.path.exists(self.folder_name):
+            os.makedirs(self.folder_name)
+        else:
+            self.folder_name = self.folder_name + "_" + str(random.randint(1000,9999))
+            os.makedirs(self.folder_name)
+
+    def get_report_folder(self):
+        return self.folder_name
+
+    def get_image_path(self, graph_type, col):
+        col = "".join(col.lower().split(' '))
+        image_name = "{0}_{1}.png".format(graph_type, col)
+        image_path = self.folder_name + image_name
+        return image_path, image_name
 
     def get_report_file(self):
         return self.fp

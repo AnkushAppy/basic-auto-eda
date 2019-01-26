@@ -1,4 +1,3 @@
-REPORT_PATH = 'report/'
 DATA_PATH = 'data/'
 DEMO_PATH = 'demo/'
 

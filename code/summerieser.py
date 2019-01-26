@@ -5,17 +5,13 @@ import matplotlib.pyplot as plt
 sns.set()
 from code.reporter import CreateReport
 from code.builder import ReportBuilder
-from code.settings import REPORT_PATH, DATA_PATH, DEAULT_CHART_SIZE
+from code.settings import DATA_PATH, DEAULT_CHART_SIZE
 
 data_path = DATA_PATH + "adult.csv"
-report_file_name = REPORT_PATH + "report.md"  # type: str
+report_file_name = "report.md"  # type: str
 
 
-def get_image_path(graph_type, col):
-    col = "".join(col.lower().split(' '))
-    image_name = "{0}_{1}.png".format(graph_type, col)
-    image_path = REPORT_PATH + image_name
-    return image_path, image_name
+
 
 
 def add_heading_to_report(text='', size=2, tab_after_text=1):
@@ -39,7 +35,7 @@ def add_cat_plot(cr, rb, i, graph_type):
         plt.figure(i, figsize=DEAULT_CHART_SIZE)
         sns_plot = sns.countplot(i, data=rb.data, order=rb.data[i].value_counts().index)
         plt.xticks(rotation=45)
-        image_path, image_name = get_image_path(graph_type, i)
+        image_path, image_name = cr.get_image_path(graph_type, i)
         sns_plot.figure.savefig(image_path)
         cr.add_plot(file_name=image_name, text=image_path)
 
@@ -61,7 +57,7 @@ def add_num_text(cr, rb, i):
 
 def add_num_plot(cr, rb, i, graph_type):
     plt.figure(i)
-    image_path, image_name = get_image_path(graph_type, i)
+    image_path, image_name = cr.get_image_path(graph_type, i)
 
     if graph_type == 'dist_plot':
         sns_plot = sns.distplot(rb.data[i])
@@ -98,7 +94,7 @@ def add_basic_numerical_details(cr, rb):
 
 def add_relplot(cr, rb, i, target_column, graph_type):
 
-    image_path, image_name = get_image_path(graph_type, target_column + "_vs_" + i)
+    image_path, image_name = cr.get_image_path(graph_type, target_column + "_vs_" + i)
     plt.figure(i)
     sns_plot = sns.relplot(x=target_column, y=i, data=rb.data)
     sns_plot.savefig(image_path)
@@ -126,7 +122,7 @@ def add_basic_target_vs_categorical(cr, rb, target_column, remove_cols=None):
         plt.figure(i, figsize=(15, 8))
         sns_plot = sns.countplot(i, data=rb.data, hue=target_column, order=rb.data[i].value_counts().index)
         plt.xticks(rotation=45)
-        image_path, image_name = get_image_path(graph_type, target_column + "_vs_" + i)
+        image_path, image_name = cr.get_image_path(graph_type, target_column + "_vs_" + i)
         sns_plot.figure.savefig(image_path)
         cr.add_plot(file_name=image_name, text=image_path)
         plt.clf()
