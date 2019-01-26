@@ -1,5 +1,5 @@
 venv
-report*
+report/*
 .idea
 code/__pycache__/
 # Byte-compiled / optimized / DLL files
